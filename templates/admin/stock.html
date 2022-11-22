@@ -1,0 +1,43 @@
+{% extends 'layouts/base_interface_admin.html' %}
+
+{% block conteudo_interfaces %}
+<section class="main-stock">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+            <div class="seleccionar-stock">
+                <h3>Mostrar stock</h3>
+                <div class="opçoes-mostrar-stock">
+                    <div>
+                        <a href="/stock/mostrar_stock">
+                            <button class="btn btn-primary">
+                            Mostrar tudo
+                            </button>
+                        </a>
+                    </div>
+                    <h6>Ou</h6>
+                    <form action="/stock/filtrar_stock", method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <div class="div-filtro">
+                            <select name="filtro-tipo" class="btn btn-primary dropdown-toggle">
+                                <option disabled selected value="">Filtrar</option>
+                                {% for tipo in categorias %}
+                                    <option name="filtro-tipo" value="{{ tipo[0] }}">{{ tipo[1] }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit" class="btn btn-primary btn-filtrar">
+                            </button>
+                        </div>
+                    </form>
+                    <div>
+                        <a href="{{url_for('comprar_produto')}}">
+                            <button type="submit" class="btn btn-primary">
+                            Comprar produto
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    {% block stock %}
+    {% endblock %}
+</section>
+{% endblock %}

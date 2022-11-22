@@ -1,0 +1,77 @@
+{% extends 'admin/fornecedores.html' %}
+
+{% block fornecedores %}
+    <div class="alias">
+        {% for tipo in categorias %}
+            <p>*{{ tipo[0] }} = {{ tipo[1] }}</p>
+        {% endfor %}
+    </div>
+    <form action="/fornecedor/comprar_produto", method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+        <div class="seleccionar-stock main-comprar">
+            <div class="opçoes-mostrar-stock div-comprar">
+                <div>
+                    {% from "layouts/macro.html" import render_field %}
+                        {{ render_field(form_adicionar.quantidade) }}
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">Comprar</button>
+                </div>
+                <div class="div-filtro">
+                    <select name="filtro-tipo" class="btn btn-primary dropdown-toggle">
+                        <option disabled selected value="">Filtrar</option>
+                        {% for tipo in categorias %}
+                            <option name="filtro-tipo" value="{{ tipo[0] }}">{{ tipo[1] }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-primary btn-filtrar">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div style="background-color:#E7F535; text-align:center; border-radius:4px;">
+            {% if mensagem %}
+                <p><b>{{ mensagem }}</b></p>
+            {% endif %}
+        </div>
+        <div class="div-stock">
+            <div id="tablescroll">
+                <table>
+                    <tr>
+                        <th>Empresa</th>
+                        <th>Tipo</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Preço</th>
+                        <th>IVA</th>
+                        <th>Desconto</th>
+                        <th>Stock</th>
+                        <th>Referência</th>
+                    </tr>
+                    {% for produto in produtos_fornecedores %}
+                    <tr>
+                        <td>{{ produto.empresa }}</td>
+                        <td>{{ produto.tipo }}</td>
+                        <td>{{ produto.marca }}</td>
+                        <td>{{ produto.modelo }}</td>
+                        <td>{{ produto.preço_compra }}</td>
+                        <td>{{ produto.IVA }}</td>
+                        <td>{{ produto.desconto }}</td>
+                        <td>{{ produto.stock }}</td>
+                        <td>{{ produto.referencia }}</td>
+                        <td><input
+                                        type="radio"
+                                        name="referencia"
+                                        value="{{ produto.referencia }}"
+                                        class="form-check-input">
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+    </form>
+{% endblock %}

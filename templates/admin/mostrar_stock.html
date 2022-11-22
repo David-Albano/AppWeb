@@ -1,0 +1,44 @@
+{% extends 'admin/stock.html' %}
+
+{% block stock %}
+    <div class="alias">
+        {% for tipo in categorias %}
+            <p>*{{ tipo[0] }} = {{ tipo[1] }}</p>
+        {% endfor %}
+    </div>
+    <form action="/stock/mostrar_stock", method="POST">
+        <div class="div-stock">
+            <div id="tablescroll">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tipo</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Preço compra</th>
+                        <th>Preço venda</th>
+                        <th>Stock</th>
+                        <th>Limite de stock</th>
+                        <th>Referência</th>
+                        <th>Armazém</th>
+                    </tr>
+                    {% for produto in stock %}
+                    <tr class="{% if produto.stock <= (produto.limite_em_stock * 0.10) %} repor-stock {% endif %}">
+                        <td>{{ produto.id }}</td>
+                        <td>{{ produto.tipo }}</td>
+                        <td>{{ produto.marca }}</td>
+                        <td>{{ produto.modelo }}</td>
+                        <td>{{ produto.preço_de_compra }}</td>
+                        <td>{{ produto.preço_de_venda }}</td>
+                        <td>{{ produto.stock }}</td>
+                        <td>{{ produto.limite_em_stock }}</td>
+                        <td>{{ produto.referencia }}</td>
+                        <td>{{ produto.armazem }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+    </form>
+{% endblock %}

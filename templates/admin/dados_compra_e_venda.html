@@ -1,0 +1,86 @@
+{% if value_utilizador == 'Cliente' %}
+        {% extends 'layouts/base_interface_cliente.html' %}
+{% elif value_utilizador == 'Fornecedor' %}
+        {% extends 'layouts/base_interface_fornecedor.html' %}
+{% elif value_utilizador == 'Admin' %}
+        {% extends 'layouts/base_interface_admin.html' %}
+{% endif %}
+
+{% block conteudo_interfaces %}
+<section class="main-stock">
+    <form action="/mostrar_graficos", method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="seleccionar-stock">
+                <h3>Mostrar gráficos</h3>
+                <div class="opçoes-mostrar-stock">
+                    {% if value_utilizador == 'Admin' %}
+                        {% for utilizador in utilizadores %}
+                            <div>
+                                <a href="/mostrar_graficos">
+                                    {% if utilizador.utilizador == 'Cliente'%}
+                                        <button type="submit" value="{{ utilizador.utilizador }}"  name="utilizador" class="btn btn-primary">
+                                            {{ 'Vendas' }}
+                                        </button>
+                                    {% elif utilizador.utilizador == 'Fornecedor'%}
+                                        <button type="submit" value="{{ utilizador.utilizador }}"  name="utilizador" class="btn btn-primary">
+                                            {{ 'Compras' }}
+                                        </button>
+                                    {% elif utilizador.utilizador == 'Admin'%}
+                                        <button type="submit" value="{{ utilizador.utilizador }}"  name="utilizador" class="btn btn-primary">
+                                            {{ 'Empresa' }}
+                                        </button>
+                                    {% endif %}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% elif value_utilizador == 'Cliente' %}
+                        <div>
+                            <a href="/mostrar_graficos">
+                                <button type="submit" class="btn btn-primary">
+                                Mostrar gráficos de compras
+                                </button>
+                            </a>
+                        </div>
+                    {% elif value_utilizador == 'Fornecedor' %}
+                        <div>
+                            <a href="/mostrar_graficos">
+                                <button type="submit" class="btn btn-primary">
+                                Mostrar gráficos de vendas
+                                </button>
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+    </form>
+    {% if value_utilizador != 'Admin' or utilizador != 'Admin' %}
+        <div class="div-stock">
+            <div id="tablescroll">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Data</th>
+                        <th>Hora</th>
+                        <th>Preço</th>
+                        <th>Quantiadade</th>
+                        <th>Valor total</th>
+                    </tr>
+                    {% for transaçao in query %}
+                    <tr>
+                        <td>{{ transaçao.id }}</td>
+                        <td>{{ transaçao.dia }}-{{ transaçao.mes }}-{{ transaçao.ano }}</td>
+                        <td>{{ transaçao.hora }}</td>
+                        <td>{{ transaçao.preço }}</td>
+                        <td>{{ transaçao.quantidade }}</td>
+                        <td>{{ transaçao.valor_total }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    {% elif value_utilizador == 'Admin' %}
+        {% block comparativa %}
+        {% endblock %}
+    {% endif %}
+</section>
+{% endblock %}

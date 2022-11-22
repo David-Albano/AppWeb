@@ -1,0 +1,56 @@
+{% if value_utilizador == 'Cliente' %}
+        {% extends 'layouts/base_interface_cliente.html' %}
+{% elif value_utilizador == 'Fornecedor' %}
+        {% extends 'layouts/base_interface_fornecedor.html' %}
+{% elif value_utilizador == 'Admin' %}
+        {% extends 'layouts/base_interface_admin.html' %}
+{% endif %}
+
+{% block conteudo_interfaces %}
+    <form action="/produto/{{produto.referencia}}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <section class="main-produto">
+            <div class="div-produto div-produto-img">
+                    <div class="div-img-produto"></div>
+                    <div class="sub-div">
+                        <div class="outras-img">
+                            <div class="min-img"></div>
+                            <div class="min-img"></div>
+                            <div class="min-img"></div>
+                            <div class="min-img"></div>
+                        </div>
+                        <div class="desc">
+                            <h3>{{ produto.marca}}</h3>
+                            <h3>{{ produto.modelo}}</h3>
+                            <h2>€{{ produto.preço_de_venda}}</h2>
+                            {% if value_utilizador == 'Cliente' %}
+                                <br>
+                                <div class="compra">
+                                    <div class="quantia">
+                                        {% from "layouts/macro.html" import render_field %}
+                                            {{ render_field(input_quantidade.quantidade) }}
+                                    </div>
+                                    <div class="btn-comprar">
+                                        <button type="submit" name="Adicionar" value="adicionar" class="btn btn-primary">
+                                            Adicionar produto
+                                        </button>
+                                    </div>
+                                </div>
+                                <div style="background-color:#E7F535; text-align:center; border-radius:4px;">
+                                    {% if mensagem %}
+                                        <p><b>{{ mensagem }}</b></p>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+            </div>
+            <div class="div-produto">
+                <h4>Descrição</h4>
+                <div>
+                    <p><b>{{ produto.descriçao}}</b></p>
+                </div>
+            </div>
+        </section>
+    </form>
+{% endblock %}

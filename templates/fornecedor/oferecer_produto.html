@@ -1,0 +1,99 @@
+{% extends 'fornecedor/dados_empresa.html' %}
+
+{% block oferecer_produto %}
+{% from "layouts/macro.html" import render_field %}
+    <br>
+     <div style="background-color:#E7F535; text-align:center; border-radius:4px;">
+        {% if mensagem %}
+            <p><b>{{ mensagem }}</b></p>
+        {% endif %}
+    </div>
+    <div class="container py-4 div-adicionar">
+        <form action="/oferecer_produto", method="POST", class="row justify-content-center">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <div class="container text-center form-adicionar">
+                <div class="div-descriçao">
+                    {{ render_field(form_oferecer.descriçao) }}
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <select name="filtros" class="btn btn-primary dropdown-toggle select-tipo" required>
+                            <option disabled selected value="">Tipo</option>
+                            {% for tipo in categorias %}
+                                <option name="" value="{{ tipo[0] }}">{{ tipo[1] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col" >
+                        {{ render_field(form_oferecer.marca) }}
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="col" >
+                            {{ render_field(form_oferecer.modelo) }}
+                            <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" >
+                            {{ render_field(form_oferecer.preço_compra) }}
+                            <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="col" >
+                            {{ render_field(form_oferecer.IVA) }}
+                            <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="col" >
+                            {{ render_field(form_oferecer.desconto) }}
+                            <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" >
+                            {{ render_field(form_oferecer.referencia) }}
+                            <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="col" >
+                            {{ render_field(form_oferecer.stock) }}
+                            <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="col div-button  div-adicionar">
+                        <button type="submit" class="btn btn-primary">
+                            Oferecer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="seleccionar-stock">
+        <h3>Produtos oferecidos</h3>
+    </div>
+    <div class="div-stock">
+        <div id="tablescroll">
+            <table>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Preço</th>
+                    <th>IVA</th>
+                    <th>Desconto</th>
+                    <th>Stock</th>
+                    <th>Referência</th>
+                </tr>
+                {% for produto in produtos_fornecedor %}
+                <tr>
+                    <td>{{ produto.tipo }}</td>
+                    <td>{{ produto.marca }}</td>
+                    <td>{{ produto.modelo }}</td>
+                    <td>{{ produto.preço_compra }}</td>
+                    <td>{{ produto.IVA }}</td>
+                    <td>{{ produto.desconto }}</td>
+                    <td>{{ produto.stock }}</td>
+                    <td>{{ produto.referencia }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

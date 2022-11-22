@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html' %}
+{% block conteudo %}
+    <main class="container p-4">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="h3-login">
+                <h3 class="display-14 text-center mt-4">Não tem acesso a esta plataforma</h3>
+                <h3 class="display-14 text-center mt-4">Volte para a secção anterior</h3>
+            </div>
+            <div class="div-mensagem">
+                <div class="div-ban">
+                    <br>
+                    <i class="fa-solid fa-ban"></i>
+                </div>
+            </div>
+    </main>
+{% endblock %}

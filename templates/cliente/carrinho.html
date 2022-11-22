@@ -1,0 +1,68 @@
+{% extends 'layouts/base_interface_cliente.html' %}
+
+{% block conteudo_interfaces %}
+<section class="main-carrinho">
+    <form action="/carrinho" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            {% if total_carrinho > 0 %}
+                {% for produto in produtos_carrinho %}
+                <div class="carrinho">
+                    <div class="div-produto-carrinho">
+                        <div class="div-img-carrinho"></div>
+                        <div class="marca">
+                            <a href="/produto/{{produto.referencia_produto}}"><b>{{ produto.marca }} - {{ produto.modelo }}</b></a>
+                            <p><b>Vendido por {{ produto.empresa }}</b></p>
+                            <p><b>Entrega em **** días</b></p>
+                        </div>
+                    </div>
+                    <div class="valores">
+                        <div>
+                            <a href="/eliminar-produto-carrinho/{{produto.referencia_produto}}" class="icon-menu"><i class="fa-regular fa-trash-can"></i></a>
+                        </div>
+                        <div class="btn-plus-minus">
+                            <div><a href="/diminuir-carrinho/{{produto.referencia_produto}}" class="icon-menu"><i class="fa-solid fa-minus"></i></a></div>
+                            <div><input type="text" id="quantidade" value="{{ produto.quantidade }}"></div>
+                            <div><a href="/aumentar-carrinho/{{produto.referencia_produto}}" class="icon-menu"><i class="fa-solid fa-plus"></i></a></div>
+                        </div>
+                        <div>
+                            <h5>{{ produto.valor_total }}</h5>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div style="background-color:#E7F535; text-align:center; border-radius:4px;">
+                    {% if mensagem %}
+                        <p><b>{{ mensagem }}</b></p>
+                    {% endif %}
+                </div>
+            {% else %}
+                <div class="carrinho-vazio">
+                    <div>
+                        <h3 style="color:#AA0E0E"><b>O TEU CARRINHO ESTÁ VAZIO</b></h3>
+                    </div><div>
+                        <h5><b>Adiciona produtos ao teu carrinho</b></h5>
+                    </div>
+                </div>
+            {% endif %}
+    </form>
+                <div class="total-stock">
+                    <div><p class="total">Total do carrinho</p></div>
+                    <div><p class="p-total"><b>€{{ total_carrinho }}</b></p></div>
+                </div>
+                <div class="botoes">
+                    <form action="/pagina_inicial", method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <div><a href="/pagina_inicial"><button type="submit" class="btn btn-primary">Continuar a comprar</button></a></div>
+                    </form>
+                    <form action="/comprar-carrinho", method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <div><a href="/comprar-carrinho"><button type="submit" class="btn btn-primary">Finalizar compra</button></a></div>
+                    </form>
+                </div>
+                <div style="background-color:#16C110; text-align:center; border-radius:4px;">
+                    {% if mensagem %}
+                        <p><b>{{ mensagem }}</b></p>
+                    {% endif %}
+                </div>
+</section>
+{% endblock %}

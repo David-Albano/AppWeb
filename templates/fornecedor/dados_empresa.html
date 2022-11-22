@@ -1,0 +1,31 @@
+{% extends 'layouts/base_interface_fornecedor.html' %}
+
+{% block conteudo_interfaces %}
+<section class="main-stock">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+        <div class="seleccionar-stock">
+            <h3>Empresa</h3>
+            <div class="opçoes-mostrar-stock">
+                <div>
+                    <a href="/empresa">
+                        <button class="btn btn-primary">
+                        Dados da empresa
+                        </button>
+                    </a>
+                </div>
+                <div>
+                    <a href="/oferecer_produto">
+                        <button class="btn btn-primary">
+                        Oferecer produto
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% block dados_empresa %}
+    {% endblock %}
+    {% block oferecer_produto %}
+    {% endblock %}
+</section>
+{% endblock %}

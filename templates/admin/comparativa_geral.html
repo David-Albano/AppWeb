@@ -1,0 +1,61 @@
+{% extends 'admin/dados_comparativos.html' %}
+
+{% block comparativa %}
+    <form action="/filtrar_dados_por_data", method="POST" style="width:62%; margin-left: 35px; margin-bottom:100px">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <div class="seleccionar-stock main-comprar">
+            <div>
+                <h4>Filtrar por data</h4>
+                <h5>Pode filtrar por data específica, mes e/ou ano</h5>
+            </div>
+            <div class="opçoes-mostrar-stock div-comprar">
+                <div>
+                    {% from "layouts/macro.html" import render_field %}
+                        {{ render_field(form_filtrar_dados.dia) }}
+                </div>
+                <div>
+                    {% from "layouts/macro.html" import render_field %}
+                        {{ render_field(form_filtrar_dados.mes) }}
+                </div>
+                <div>
+                    {% from "layouts/macro.html" import render_field %}
+                        {{ render_field(form_filtrar_dados.ano) }}
+                </div>
+                <div>
+                    <a href="/filtrar_dados_por_data">
+                        <button type="submit" value="{{ utilizador.utilizador }}"  name="utilizador" class="btn btn-primary">
+                            Filtrar
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div style="background-color:#E7F535; text-align:center; border-radius:4px;">
+            {% if mensagem %}
+                <p><b>{{ mensagem }}</b></p>
+            {% endif %}
+        </div>
+
+        <div class="total-stock">
+            <div><p class="total">Numero de compras</p></div>
+            <div><p class="p-total"><b>{{ dados['numero_compras'] }}</b></p></div>
+        </div>
+        <div class="total-stock">
+            <div><p class="total">Numero de vendas</p></div>
+            <div><p class="p-total"><b>{{ dados['numero_vendas'] }}</b></p></div>
+        </div>
+        <div class="total-stock">
+            <div><p class="total">Total Compras</p></div>
+            <div><p class="p-total"><b>€{{ dados['total_compras'] }}</b></p></div>
+        </div>
+        <div class="total-stock">
+            <div><p class="total">Total Vendas</p></div>
+            <div><p class="p-total"><b>€{{ dados['total_vendas'] }}</b></p></div>
+        </div>
+        <div class="total-stock">
+            <div><p class="total">Lucro</p></div>
+            <div><p class="p-total"><b>€{{ dados['lucro'] }}</b></p></div>
+        </div>
+    </form>
+{% endblock %}

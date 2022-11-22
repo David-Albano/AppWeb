@@ -1,0 +1,35 @@
+{% if value_utilizador == 'Cliente' %}
+        {% extends 'layouts/base_interface_cliente.html' %}
+{% elif value_utilizador == 'Fornecedor' %}
+        {% extends 'layouts/base_interface_fornecedor.html' %}
+{% elif value_utilizador == 'Admin' %}
+        {% extends 'layouts/base_interface_admin.html' %}
+{% endif %}
+
+{% block conteudo_interfaces %}
+    <section class="main-produtos">
+        {% block pagina_inicial %}
+        {% endblock %}
+        <form action="/produto/<referencia>">
+            <section id="mostrar-produtos" class="mostrar-produtos">
+                {% for produto in produtos %}
+                    <div class="produto">
+                        <a href="/produto/{{ produto.referencia }}">
+                            <div>
+                                <div class="div-img"></div>
+                                <div class="div-pé">
+                                    <div class=" color-h">
+                                        <h4>{{ produto.marca }} {{ produto.modelo }}</h4>
+                                    </div>
+                                    <div class="div-preço">
+                                        <h2 class="h2-preço color-h">€{{ produto.preço_de_venda }}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </section>
+        </form>
+    </section>
+{% endblock %}

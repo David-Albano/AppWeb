@@ -1,0 +1,130 @@
+
+.main-stock {
+    width: 100%;
+    display:block;
+}
+
+.seleccionar-stock {
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 95%;
+}
+
+h3 {
+    color: #fff;
+}
+
+h6 {
+    color: #fff;
+}
+
+.opçoes-mostrar-stock {
+    background: rgb(2, 21, 65);
+    width: 65%;
+    margin-left:0px;
+    height: 50px;
+    border-radius: 8px 8px 3px 3px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.btn-filtrar{
+    margin-left:5px;
+    width:30px;
+    height:30px;
+    background: url('filtrar.png');
+    background-size: cover;
+    background-color: rgb(125, 166, 248);
+}
+
+.div-stock {
+    margin: 0 auto;
+    margin-bottom: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.main-comprar {
+}
+
+.div-comprar {
+    padding: 10px;
+    height: 50px;
+    background: rgb(172, 192, 254, .7);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.div-comprar #quantidade {
+    margin-left: 20px;
+    width: 70px;
+    margin-right: 100px;
+    text-align:center;
+}
+
+#tablescroll {
+    height: 32rem;
+    width: 100%;
+    overflow: auto;
+}
+
+table {
+  table-layout: fixed;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 8px;
+  border-collapse: separate;
+}
+
+th {
+    border: solid 3px #000;
+    text-align: center;
+    color: #000;
+    border-radius: 4.5px 4.5px 0 0;
+    background: rgb(204, 197, 197);
+}
+
+td {
+    border: solid 2px #fff;
+    padding: 10px;
+    text-align: center;
+    color: #000;
+    background: rgb(137, 188, 255, .5);
+}
+
+.repor-stock {
+    background: rgb(241, 21, 21);
+}
+    .repor-stock td {
+        border: solid 2px red;
+    }
+
+.alias {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+    .alias p {
+        margin-bottom: 0px;
+        color: #fff;
+        font-size: 17px;
+    }
+
+.form-adicionar {
+    background: -webkit-linear-gradient(to right, #A7BFE8, #6190E8);
+    background: linear-gradient(to right, #A7BFE8, #6190E8);
+    width: 95%;
+    margin: 0 auto;
+}
+    .form-adicionar .div-adicionar {
+        margin-top: 10px;
+        height: 10%;
+    }
+
+.select-tipo {
+    margin-top: 15px;
+    transform: scale(0.9);
+}

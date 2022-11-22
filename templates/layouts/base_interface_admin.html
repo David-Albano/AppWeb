@@ -1,0 +1,39 @@
+{% extends 'layouts/base_nav.html' %}
+
+{% block menu %}
+    <li class="bt-lista">
+        <a href="/stock" class="enlace-stock">
+            <div class="bt-menu">
+                <i class="fa-brands fa-stack-overflow icon-lista"></i>
+                <h5>Stock</h5>
+            </div>
+        </a>
+    </li>
+    <br>
+    <li class="bt-lista">
+        <a href="/clientes" class="enlace-clientes">
+            <div class="bt-menu">
+                <i class="fa-regular fa-chart-simple icon-lista"></i>
+                <h5>Clientes</h5>
+            </div>
+        </a>
+    </li>
+    <br>
+    <li class="bt-lista">
+        <a href="/fornecedores" class="enlace-menu">
+            <div class="bt-menu">
+                <i class="fa-regular fa-chart-simple icon-lista"></i>
+               <h5>Fornecedores</h5>
+            </div>
+        </a>
+    </li>
+    <br>
+    <li class="bt-lista">
+        <a href="/dados_compra_venda" class="enlace-menu">
+            <div class="bt-menu">
+                <i class="fa-regular fa-chart-simple icon-lista"></i>
+                <h5>Dados de compra e venda</h5>
+            </div>
+        </a>
+    </li>
+    {% endblock %}

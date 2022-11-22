@@ -1,0 +1,79 @@
+{% extends 'layouts/base.html' %}
+
+{% block conteudo %}
+<main class="main-interfaces" id="main-interfaces">
+    <form action="/categorias/<tipo>">
+        <nav class="nav" id="nav-menu">
+
+            <ul class="menu-lista" id="ul-menu">
+                <li class="bt-lista">
+                    <a href="/pagina_inicial" class="nav_link enlace-menu">
+                        <div class="bt-menu">
+                            <i class="fa-solid fa-house icon-lista"></i>
+                            <h5>Página inicial</h5>
+                        </div>
+                    </a>
+                </li>
+                <br>
+                <li class="bt-lista lista_categorias">
+                    <a class="nav_link bt-categorias enlace-menu">
+                        <div class="bt-menu div-categorias">
+                            <i class="fa-regular fa-server icon-lista"></i>
+                            <h5>Categorias<i class="fa-sharp fa-solid fa-arrow-down-wide-short"></i></h5>
+                        </div>
+                    </a>
+                    <form action="/categorias/<tipo>" method="POST">
+                        <ul class="list_show sub-menu">
+                            {% for tipo in categorias %}
+                                <li class="list_inside sub-menu-options">
+                                    <a href="/categorias/{{ tipo[0] }}" name="{{ tipo[0] }}" class="enlace-sub_menu">
+                                        {{ tipo[1] }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </form>
+                </li>
+                </li>
+                <br>
+                {% block menu %}
+                {% endblock %}
+                <br>
+                <li class="bt-lista">
+                    <a href="/terminar-sessao" class="enlace-menu">
+                        <div class="bt-menu">
+                            <i class="fa-solid fa-right-from-bracket icon-lista"></i>
+                            <h5>Terminar sessão</h5>
+                        </div>
+                    </a>
+                    <hr>
+                    <select name="user-type" id="user-dropdown" class="btn btn-primary dropdown-toggle">
+                        <option selected value="{{ value_utilizador }}">{{ value_utilizador }}</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </form>
+    <section class="geral-interface">
+        <div style="background-color:#16C110; text-align:center; border-radius:4px;">
+            {% if mensagem_login %}
+                <p><b>{{ mensagem_login }}</b></p>
+            {% endif %}
+        </div>
+        {% if value_utilizador == 'Admin' %}
+            <section class="section-aviso">
+                {% for produto in produtos %}
+                    {% if produto.stock <= (produto.limite_em_stock * 0.10) %}
+                        <div class="div-aviso">
+                            <p><i class="fa-solid fa-circle-exclamation icon-aviso"></i><b>O produto {{ produto.marca }}-{{ produto.modelo }} só tem {{ produto.stock }}/{{ produto.limite_em_stock }} em stock. Pode solicitar mais unidades deste produto à {{ produto.empresa }}</b></p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </section>
+        {% endif %}
+
+        {% block conteudo_interfaces %}
+        {% endblock %}
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'layouts/base_interface_admin.html' %}
+
+{% block conteudo_interfaces %}
+    <form action="/clientes", method="POST">
+        <section class="section-clientes">
+            <div>
+                <div class="seleccionar-stock">
+                    <h3>Clientes</h3>
+                </div>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>NIF</th>
+                        <th>Contrasenha</th>
+                        <th>Compras</th>
+                        <th>Total compras</th>
+                    </tr>
+                    {% for cliente in clientes %}
+                        <tr>
+                        <td>{{ cliente.id }}</td>
+                        <td>{{ cliente.nome }}</td>
+                        <td>{{ cliente.email }}</td>
+                        <td>{{ cliente.NIF }}</td>
+                        <td>{{ cliente.contrasenha }}</td>
+                        <td>{{ cliente.compras }}</td>
+                        <td>{{ cliente.total_compras }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+
+    </form>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'layouts/base.html' %}
+
+{% block conteudo %}
+
+{% from "layouts/macro.html" import render_field %}
+    <main class="container p-4">
+        <form action="/fazer-login", method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="h3-login"><h3 class="display-14 text-center mt-4">Faça log-in ou crie uma conta para ingressar a nossa plataforma</h3></div>
+                <div class="tipo-de-login">
+                        <a href="/">Iniciar sessão</a>
+                        <a href='/criar-utilizador'>Criar conta</a>
+                </div>
+                <div class="div-main-login">
+                    <div style="background-color:#E7F535; text-align:center; border-radius:4px;">
+                        {% if mensagem %}
+                            <p><b>{{ mensagem }}</b></p>
+                        {% endif %}
+                    </div>
+                    <div class="card col-md-4 offset-md-4 my-auto div-form-criar">
+                          <div class="div-user-dropdown">
+                            <select name="user-type" id="user-dropdown" class="btn btn-primary dropdown-toggle" required>
+                                <option disabled selected value="">Seleccionar...</option>
+                                {% for registo in form_utilizadores %}
+                                <option name="user-type" value="{{ registo.utilizador }}">{{ registo.utilizador }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <br>
+
+                            <div class="cliente-login-section">
+
+                                <div>
+                                    {{ render_field(form_login.email) }}
+                                </div>
+                                <div>
+                                    {{ render_field(form_login.contrasenha) }}
+                                </div>
+                                <div class="div-button">
+                                    <button type="submit" class="btn btn-primary">
+                                        Ingressar
+                                    </button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+        </form>
+    </main>
+
+{% endblock %}

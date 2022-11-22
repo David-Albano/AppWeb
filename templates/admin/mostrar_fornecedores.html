@@ -1,0 +1,31 @@
+{% extends 'admin/fornecedores.html' %}
+
+{% block fornecedores %}
+    <form action="/fornecedores/mostrar_fornecedores", method="POST">
+        <div class="div-stock">
+            <div id="tablescroll">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Empresa</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>NIF</th>
+                        <th>Endereço</th>
+                    </tr>
+                    {% for fornecedor in fornecedores %}
+                        <tr>
+                        <td>{{ fornecedor.id }}</td>
+                        <td>{{ fornecedor.empresa }}</td>
+                        <td>{{ fornecedor.email }}</td>
+                        <td>{{ fornecedor.telefone }}</td>
+                        <td>{{ fornecedor.NIF }}</td>
+                        <td>{{ fornecedor.endereço }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+    </form>
+{% endblock %}

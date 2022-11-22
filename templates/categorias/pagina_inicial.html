@@ -1,0 +1,18 @@
+{% extends 'categorias/categorias.html' %}
+
+{% block pagina_inicial %}
+    <form action="/categorias/<tipo>" method="POST">
+        <section class="pagina_inicial">
+            {% for tipo in categorias %}
+                <a href="/categorias/{{ tipo[0] }}" style="text-decoration:none">
+                    <div class="card-categorias">
+                        <div class="card-img"></div>
+                        <div class="card-categoria">
+                            <p><b>{{ tipo[1] }}</b></p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </section>
+    </form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'fornecedor/dados_empresa.html' %}
+
+    {% block dados_empresa %}
+    <div class="container py-4 div-adicionar">
+        <form action="/empresa", method="POST", class="row justify-content-center">
+            <div class="container form-adicionar">
+                    <div class="row" style="margin-bottom: 15px">
+                        <h5>Nome da empresa: {{ dados_empresa.nome_da_empresa }}</h5>
+                    </div>
+                    <div class="row" style="margin-bottom: 15px">
+                        <h5>Telefone: {{dados_empresa.telefone}}</h5>
+                    </div>
+                    <div class="row" style="margin-bottom: 15px">
+                        <h5>Email: {{dados_empresa.email}}</h5>
+                    </div>
+                    <div class="row" style="margin-bottom: 15px">
+                        <h5>NIF: {{dados_empresa.NIF}}</h5>
+                    </div>
+                    <div class="row" style="margin-bottom: 15px">
+                        <h5>Morada: {{dados_empresa.endereço}}</h5>
+                    </div>
+                    <div class="row">
+                        <h5>Código postal: {{dados_empresa.codigo_postal}}</h5>
+                    </div>
+            </div>
+        </form>
+    </div>
+    {% endblock %}
