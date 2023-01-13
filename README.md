@@ -34,8 +34,7 @@ Instale as dependências:
 
 Nota: Puede ser necesario agregar el comando sudo al principio de cada comando de instalación si está utilizando un sistema operativo Linux o Mac.
 
-**Inicie o servidor de desenvolvimento:**
-python app.py
+Execute a aplicação com o seguinte comando: `python app.py`
 Acesse a aplicação em seu navegador através da URL: http://127.0.0.1:5000/
 
 **Utilização**
