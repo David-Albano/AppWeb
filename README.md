@@ -43,7 +43,7 @@ Ao acessar a aplicação, você será redirecionado para a página de login. Se 
 
 Ao fazer login, você será redirecionado para a página inicial da aplicação, onde poderá visualizar os produtos disponíveis, adicioná-los ao carrinho de compras e visualizar os gráficos de vendas e compras.
 
-**Notas**
-Como esta é uma aplicação protótipo, não há suporte para pagamentos e os dados são armazenados em um banco de dados de desenvolvimento local.
-É necessário ter as bibliotecas Flask, SQLAlchemy e Matplotlib instaladas para executar a aplicação.
-Certifique-se de ter o python e pip instalado antes de tentar instalar as dependências.
+**Notas**:
+- Esta app web não tem desenho 'responsive'
+- Como esta é uma aplicação protótipo, não há suporte para pagamentos e os dados são armazenados em um banco de dados de desenvolvimento local.
+- Certifique-se de ter o python e pip instalado antes de tentar instalar as dependências.
