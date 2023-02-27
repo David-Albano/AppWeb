@@ -2,6 +2,8 @@
 
 This application is a product management prototype with access through three types of users: Administrator, Provider and Customer. It is an e-commerce application, with a shopping cart (without the payment method option) and sales and purchase comparison charts. The application was developed in Python, using the Flask and SQLAlchemy libraries, and the Matplotlib library to generate graphs.
 
+Have a look to the previews: [Previews](https://github.com/David-Albano/AppWeb/blob/main/Template%20App%20Manager.pdf)
+
 ** Requirements **
 To run this application, you must have the following requirements installed:
 
